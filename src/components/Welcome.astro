@@ -1,0 +1,174 @@
+---
+const currentDate = new Date()
+  .toLocaleDateString("en-GB", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+  .toUpperCase();
+---
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      /* Global styles */
+      body {
+        margin: 0;
+        font-family: poppins, sans-serif;
+      }
+
+      .top-bar {
+        background-color: #f5f5f5;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .top-bar .date {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .top-bar .icons {
+        display: flex;
+        gap: 20px;
+        font-size: 24px;
+        flex-wrap: wrap;
+      }
+
+      .header {
+        background: linear-gradient(to right, #001f5c, #0040a0);
+        padding: 20px;
+      }
+
+      .header-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .header img {
+        height: 50px;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .nav a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .nav a img {
+        vertical-align: middle;
+      }
+
+      /* Responsive styles */
+      @media (min-width: 600px) {
+        .top-bar {
+          flex-wrap: nowrap;
+        }
+
+        .top-bar .date {
+          margin-bottom: 0;
+        }
+
+        .header-container {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        .nav {
+          justify-content: flex-end;
+          font-size: 15px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .top-bar {
+          font-size: 20px;
+        }
+
+        .top-bar .icons {
+          font-size: 28px;
+          gap: 30px;
+        }
+
+        .nav {
+          gap: 24px;
+          font-size: 16px;
+        }
+
+        .header img {
+          height: 60px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="date">{currentDate}</div>
+      <div class="icons">
+        <a href="https://news24online.com/category/cities/kolkata/"
+          ><i class="fab fa-facebook-f"></i></a
+        >
+        <!-- <a href="#"><i class="fab fa-instagram"></i></a> -->
+        <a href="x.com/desh_kiawaz?t=eeU5_8-9x6UxMjMX4ZVHvA&s=09"
+          ><i class="fab fa-x-twitter"></i></a
+        >
+        <a href="whatsapp.com/channel/0029VaAZTmS0LKZEbhPQ0C3v"
+          ><i class="fab fa-whatsapp"></i></a
+        >
+        <a href="www.youtube.com/@newslivelink"
+          ><i class="fab fa-youtube"></i></a
+        >
+      </div>
+    </div>
+
+    <!-- Loo and Main Nvbar -->
+    <div class="header">
+      <div class="header-container">
+        <img
+          src="https://news24online.com/wp-content/themes/news24theme/assets/images/logon24(1).png"
+          alt="News24 Logo"
+        />
+        <nav class="nav">
+          <a href="#">HOME</a>
+          <a href="#">INDIA</a>
+          <a href="#">CITIES</a>
+          <a href="#">OPINION</a>
+          <a href="#">WORLD</a>
+          <a href="#">SPORTS</a>
+          <a href="#">ENTERTAINMENT</a>
+          <a href="#">AUTO</a>
+          <a href="#">TECH</a>
+          <a href="#">TRENDING</a>
+          <a href="#">BUSINESS</a>
+          <!-- <a href="#"
+            ><img
+              src="https://img.icons8.com/ios-glyphs/24/ffffff/search--v1.png"
+              alt="Search"
+            /></a
+          > -->
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>
