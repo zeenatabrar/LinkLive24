@@ -23,12 +23,19 @@ const currentDate = new Date()
       }
 
       .top-bar {
-        background-color: #f5f5f5;
-        padding: 10px 20px;
+        /* background-color: #f5f5f5; */
+        /* padding: 10px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: wrap; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1600px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 10px 20px;
       }
 
       .top-bar .date {
@@ -53,7 +60,7 @@ const currentDate = new Date()
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 1200px;
+        max-width: 1600px;
         margin: 0 auto;
         width: 100%;
       }
@@ -285,16 +292,12 @@ const currentDate = new Date()
         </div>
         <nav class="nav">
           <a href="#">HOME</a>
+          <a href="#">NEWSPAPER</a>
           <a href="#">INDIA</a>
-          <a href="#">CITIES</a>
-          <a href="#">OPINION</a>
+
           <a href="#">WORLD</a>
           <a href="#">SPORTS</a>
           <a href="#">ENTERTAINMENT</a>
-          <a href="#">AUTO</a>
-          <a href="#">TECH</a>
-          <a href="#">TRENDING</a>
-          <a href="#">BUSINESS</a>
         </nav>
       </div>
       <div class="mobile-menu" id="mobileMenu">
@@ -322,7 +325,6 @@ const currentDate = new Date()
         <div class="play-button">
           <i class="fas fa-play"></i>
         </div>
-        <div class="video-title">Your Video Title Here</div>
       </div>
       <div class="video-thumbnail" data-video-id="SjC62lw7QC0">
         <img
@@ -332,7 +334,6 @@ const currentDate = new Date()
         <div class="play-button">
           <i class="fas fa-play"></i>
         </div>
-        <div class="video-title">Your Video Title Here</div>
       </div>
       <div class="video-thumbnail" data-video-id="qWaZzyev7n4">
         <img
@@ -342,7 +343,6 @@ const currentDate = new Date()
         <div class="play-button">
           <i class="fas fa-play"></i>
         </div>
-        <div class="video-title">Your Video Title Here</div>
       </div>
       <div class="video-thumbnail" data-video-id="AF5GLmTzgqk">
         <img
@@ -352,7 +352,6 @@ const currentDate = new Date()
         <div class="play-button">
           <i class="fas fa-play"></i>
         </div>
-        <div class="video-title">Your Video Title Here</div>
       </div>
       <!-- Add more video thumbnails as needed -->
     </section>
