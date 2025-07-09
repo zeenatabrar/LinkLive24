@@ -1,0 +1,124 @@
+---
+const navLinks = [
+  { href: "#", text: "HOME" },
+  { href: "#", text: "NEWSPAPER" },
+  { href: "#", text: "INDIA" },
+  { href: "#", text: "WORLD" },
+  { href: "#", text: "SPORTS" },
+  { href: "#", text: "ENTERTAINMENT" },
+];
+
+const mobileNavLinks = [
+  { href: "#", text: "HOME" },
+  { href: "#", text: "NEWSPAPER" },
+  { href: "#", text: "INDIA" },
+  { href: "#", text: "WORLD" },
+  { href: "#", text: "SPORTS" },
+  { href: "#", text: "ENTERTAINMENT" },
+];
+---
+
+<div class="header">
+  <div class="header-container">
+    <div>
+      <img
+        src="/logo.jpg"
+        alt="News24 Logo"
+        style="width: 100px; height: auto;"
+      />
+    </div>
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav class="nav">
+      {navLinks.map((link) => <a href={link.href}>{link.text}</a>)}
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    {mobileNavLinks.map((link) => <a href={link.href}>{link.text}</a>)}
+  </div>
+</div>
+
+<style>
+  .header {
+    /* background: linear-gradient(to right, #001f5c, #0040a0);
+    padding: 20px; */
+    background: #222; /* Dark gray (works with most logo colors) */
+    padding: 15px 20px;
+    border-bottom: 3px solid #e60000; /* Accent red for contrast */
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .header img {
+    height: 50px;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .nav a {
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #0040a0;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 1023px) {
+    .nav {
+      display: none;
+    }
+
+    .hamburger {
+      display: block;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .nav {
+      gap: 24px;
+      font-size: 16px;
+    }
+
+    .header img {
+      height: 60px;
+    }
+  }
+</style>

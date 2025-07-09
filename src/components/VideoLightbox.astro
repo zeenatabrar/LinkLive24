@@ -1,0 +1,62 @@
+---
+
+---
+
+<div class="lightbox" id="videoLightbox">
+  <div class="lightbox-content">
+    <span class="close-lightbox">&times;</span>
+    <div class="video-container">
+      <iframe id="videoFrame" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.active {
+    display: flex;
+  }
+
+  .lightbox-content {
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+  }
+
+  .close-lightbox {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>

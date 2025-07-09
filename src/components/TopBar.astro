@@ -1,0 +1,74 @@
+---
+const currentDate = new Date()
+  .toLocaleDateString("en-GB", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+  .toUpperCase();
+---
+
+<div class="top-bar">
+  <div class="date">{currentDate}</div>
+  <div class="icons">
+    <a href="https://news24online.com/category/cities/kolkata/">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="x.com/desh_kiawaz?t=eeU5_8-9x6UxMjMX4ZVHvA&s=09">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+    <a href="whatsapp.com/channel/0029VaAZTmS0LKZEbhPQ0C3v">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="www.youtube.com/@newslivelink">
+      <i class="fab fa-youtube"></i>
+    </a>
+  </div>
+</div>
+
+<style>
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .top-bar .date {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .top-bar .icons {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 600px) {
+    .top-bar {
+      flex-wrap: nowrap;
+    }
+
+    .top-bar .date {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .top-bar {
+      font-size: 20px;
+    }
+
+    .top-bar .icons {
+      font-size: 28px;
+      gap: 30px;
+    }
+  }
+</style>

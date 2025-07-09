@@ -1,12 +1,8 @@
 ---
-const currentDate = new Date()
-  .toLocaleDateString("en-GB", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
-  .toUpperCase();
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import VideoGallery from "../components/VideoGallery.astro";
+import VideoLightbox from "../components/VideoLightbox.astro";
 ---
 
 <html>
@@ -15,356 +11,13 @@ const currentDate = new Date()
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <style>
-      /* Global styles */
-      body {
-        margin: 0;
-        font-family: poppins, sans-serif;
-      }
-
-      .top-bar {
-        /* background-color: #f5f5f5; */
-        /* padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap; */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1600px;
-        margin: 0 auto;
-        width: 100%;
-        padding: 10px 20px;
-      }
-
-      .top-bar .date {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-
-      .top-bar .icons {
-        display: flex;
-        gap: 20px;
-        font-size: 24px;
-        flex-wrap: wrap;
-      }
-
-      .header {
-        background: linear-gradient(to right, #001f5c, #0040a0);
-        padding: 20px;
-      }
-
-      .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1600px;
-        margin: 0 auto;
-        width: 100%;
-      }
-
-      .header img {
-        height: 50px;
-      }
-
-      .nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        font-weight: bold;
-        font-size: 14px;
-      }
-
-      .nav a {
-        color: white;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-
-      .nav a img {
-        vertical-align: middle;
-      }
-
-      /* Hamburger menu styles */
-      .hamburger {
-        display: none;
-        cursor: pointer;
-        font-size: 24px;
-        color: white;
-      }
-
-      .mobile-menu {
-        display: none;
-        flex-direction: column;
-        background: #0040a0;
-        width: 100%;
-        padding: 10px 0;
-      }
-
-      .mobile-menu a {
-        color: white;
-        text-decoration: none;
-        padding: 10px 20px;
-        font-weight: bold;
-      }
-
-      /* Responsive styles */
-      @media (max-width: 1023px) {
-        .nav {
-          display: none;
-        }
-
-        .hamburger {
-          display: block;
-        }
-
-        .mobile-menu.active {
-          display: flex;
-        }
-      }
-
-      @media (min-width: 600px) {
-        .top-bar {
-          flex-wrap: nowrap;
-        }
-
-        .top-bar .date {
-          margin-bottom: 0;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .top-bar {
-          font-size: 20px;
-        }
-
-        .top-bar .icons {
-          font-size: 28px;
-          gap: 30px;
-        }
-
-        .nav {
-          gap: 24px;
-          font-size: 16px;
-        }
-
-        .header img {
-          height: 60px;
-        }
-      }
-      .video-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-        padding: 20px;
-      }
-
-      .video-thumbnail {
-        position: relative;
-        cursor: pointer;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-      }
-
-      .video-thumbnail:hover {
-        transform: scale(1.03);
-      }
-
-      .video-thumbnail img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      .play-button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60px;
-        height: 60px;
-        background-color: rgba(255, 0, 0, 0.8);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .play-button i {
-        color: white;
-        font-size: 24px;
-        margin-left: 5px;
-      }
-
-      .video-title {
-        padding: 15px;
-        background: #f5f5f5;
-        font-weight: bold;
-      }
-
-      /* Lightbox Styles */
-      .lightbox {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        z-index: 1000;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .lightbox.active {
-        display: flex;
-      }
-
-      .lightbox-content {
-        width: 80%;
-        max-width: 900px;
-        position: relative;
-      }
-
-      .close-lightbox {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        color: white;
-        font-size: 30px;
-        cursor: pointer;
-      }
-
-      .video-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        height: 0;
-        overflow: hidden;
-      }
-
-      .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-    </style>
   </head>
 
   <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="date">{currentDate}</div>
-      <div class="icons">
-        <a href="https://news24online.com/category/cities/kolkata/"
-          ><i class="fab fa-facebook-f"></i></a
-        >
-        <a href="x.com/desh_kiawaz?t=eeU5_8-9x6UxMjMX4ZVHvA&s=09"
-          ><i class="fab fa-x-twitter"></i></a
-        >
-        <a href="whatsapp.com/channel/0029VaAZTmS0LKZEbhPQ0C3v"
-          ><i class="fab fa-whatsapp"></i></a
-        >
-        <a href="www.youtube.com/@newslivelink"
-          ><i class="fab fa-youtube"></i></a
-        >
-      </div>
-    </div>
-
-    <!-- Logo and Main Navbar -->
-    <div class="header">
-      <div class="header-container">
-        <div>
-          <img
-            src="/logo.jpg"
-            alt="News24 Logo"
-            style="width: 100px; height: auto;"
-          />
-        </div>
-        <div class="hamburger" id="hamburger">
-          <i class="fas fa-bars"></i>
-        </div>
-        <nav class="nav">
-          <a href="#">HOME</a>
-          <a href="#">NEWSPAPER</a>
-          <a href="#">INDIA</a>
-
-          <a href="#">WORLD</a>
-          <a href="#">SPORTS</a>
-          <a href="#">ENTERTAINMENT</a>
-        </nav>
-      </div>
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#">HOME</a>
-        <a href="#">INDIA</a>
-        <a href="#">CITIES</a>
-        <a href="#">OPINION</a>
-        <a href="#">WORLD</a>
-        <a href="#">SPORTS</a>
-        <a href="#">ENTERTAINMENT</a>
-        <a href="#">AUTO</a>
-        <a href="#">TECH</a>
-        <a href="#">TRENDING</a>
-        <a href="#">BUSINESS</a>
-      </div>
-    </div>
-
-    <!-- Add this video gallery section -->
-    <section class="video-gallery">
-      <div class="video-thumbnail" data-video-id="Q-SMsAi_wr8">
-        <img
-          src="https://img.youtube.com/vi/Q-SMsAi_wr8/maxresdefault.jpg"
-          alt="Video Thumbnail"
-        />
-        <div class="play-button">
-          <i class="fas fa-play"></i>
-        </div>
-      </div>
-      <div class="video-thumbnail" data-video-id="SjC62lw7QC0">
-        <img
-          src="https://img.youtube.com/vi/SjC62lw7QC0/maxresdefault.jpg"
-          alt="Video Thumbnail"
-        />
-        <div class="play-button">
-          <i class="fas fa-play"></i>
-        </div>
-      </div>
-      <div class="video-thumbnail" data-video-id="qWaZzyev7n4">
-        <img
-          src="https://img.youtube.com/vi/qWaZzyev7n4/maxresdefault.jpg"
-          alt="Video Thumbnail"
-        />
-        <div class="play-button">
-          <i class="fas fa-play"></i>
-        </div>
-      </div>
-      <div class="video-thumbnail" data-video-id="AF5GLmTzgqk">
-        <img
-          src="https://img.youtube.com/vi/AF5GLmTzgqk/maxresdefault.jpg"
-          alt="Video Thumbnail"
-        />
-        <div class="play-button">
-          <i class="fas fa-play"></i>
-        </div>
-      </div>
-      <!-- Add more video thumbnails as needed -->
-    </section>
-
-    <!-- Lightbox HTML -->
-    <div class="lightbox" id="videoLightbox">
-      <div class="lightbox-content">
-        <span class="close-lightbox">&times;</span>
-        <div class="video-container">
-          <iframe id="videoFrame" src="" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
+    <TopBar />
+    <Header />
+    <VideoGallery />
+    <VideoLightbox />
 
     <script>
       // Toggle mobile menu
@@ -377,25 +30,23 @@ const currentDate = new Date()
         });
       }
 
-      // Add this new JavaScript for video lightbox functionality
+      // Video lightbox functionality
       document.addEventListener("DOMContentLoaded", function () {
         const videoThumbnails = document.querySelectorAll(".video-thumbnail");
         const lightbox = document.getElementById("videoLightbox");
-        const videoFrame = document.getElementById(
-          "videoFrame"
-        ) as HTMLIFrameElement;
+        const videoFrame = document.getElementById("videoFrame");
         const closeLightbox = document.querySelector(".close-lightbox");
 
         // Open lightbox when video thumbnail is clicked
         videoThumbnails.forEach((thumbnail) => {
           thumbnail.addEventListener("click", function () {
             const videoId = this.getAttribute("data-video-id");
-            if (videoFrame) {
+            if (videoFrame instanceof HTMLIFrameElement) {
               videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             }
             if (lightbox) {
               lightbox.classList.add("active");
-              document.body.style.overflow = "hidden"; // Prevent scrolling
+              document.body.style.overflow = "hidden";
             }
           });
         });
@@ -406,8 +57,12 @@ const currentDate = new Date()
             if (lightbox) {
               lightbox.classList.remove("active");
             }
-            videoFrame.src = "";
-            document.body.style.overflow = "auto"; // Re-enable scrolling
+            if (videoFrame && videoFrame instanceof HTMLIFrameElement) {
+              if (videoFrame instanceof HTMLIFrameElement) {
+                videoFrame.src = "";
+              }
+            }
+            document.body.style.overflow = "auto";
           });
         }
 
@@ -416,7 +71,9 @@ const currentDate = new Date()
           lightbox.addEventListener("click", function (e) {
             if (e.target === lightbox) {
               lightbox.classList.remove("active");
-              videoFrame.src = "";
+              if (videoFrame instanceof HTMLIFrameElement) {
+                videoFrame.src = "";
+              }
               document.body.style.overflow = "auto";
             }
           });
