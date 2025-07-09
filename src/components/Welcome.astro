@@ -151,6 +151,106 @@ const currentDate = new Date()
           height: 60px;
         }
       }
+      .video-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .video-thumbnail {
+        position: relative;
+        cursor: pointer;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .video-thumbnail:hover {
+        transform: scale(1.03);
+      }
+
+      .video-thumbnail img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 0, 0, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .play-button i {
+        color: white;
+        font-size: 24px;
+        margin-left: 5px;
+      }
+
+      .video-title {
+        padding: 15px;
+        background: #f5f5f5;
+        font-weight: bold;
+      }
+
+      /* Lightbox Styles */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-content {
+        width: 80%;
+        max-width: 900px;
+        position: relative;
+      }
+
+      .close-lightbox {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+      }
+
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
     </style>
   </head>
 
@@ -213,6 +313,43 @@ const currentDate = new Date()
       </div>
     </div>
 
+    <!-- Add this video gallery section -->
+    <section class="video-gallery">
+      <div class="video-thumbnail" data-video-id="dQw4w9WgXcQ">
+        <img
+          src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+          alt="Video Thumbnail"
+        />
+        <div class="play-button">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="video-title">Latest News Update</div>
+      </div>
+
+      <div class="video-thumbnail" data-video-id="9bZkp7q19f0">
+        <img
+          src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg"
+          alt="Video Thumbnail"
+        />
+        <div class="play-button">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="video-title">Special Report</div>
+      </div>
+
+      <!-- Add more video thumbnails as needed -->
+    </section>
+
+    <!-- Lightbox HTML -->
+    <div class="lightbox" id="videoLightbox">
+      <div class="lightbox-content">
+        <span class="close-lightbox">&times;</span>
+        <div class="video-container">
+          <iframe id="videoFrame" src="" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
     <script>
       // Toggle mobile menu
       const hamburger = document.getElementById("hamburger");
@@ -223,6 +360,52 @@ const currentDate = new Date()
           mobileMenu.classList.toggle("active");
         });
       }
+
+      // Add this new JavaScript for video lightbox functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const videoThumbnails = document.querySelectorAll(".video-thumbnail");
+        const lightbox = document.getElementById("videoLightbox");
+        const videoFrame = document.getElementById(
+          "videoFrame"
+        ) as HTMLIFrameElement;
+        const closeLightbox = document.querySelector(".close-lightbox");
+
+        // Open lightbox when video thumbnail is clicked
+        videoThumbnails.forEach((thumbnail) => {
+          thumbnail.addEventListener("click", function () {
+            const videoId = this.getAttribute("data-video-id");
+            if (videoFrame) {
+              videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            }
+            if (lightbox) {
+              lightbox.classList.add("active");
+              document.body.style.overflow = "hidden"; // Prevent scrolling
+            }
+          });
+        });
+
+        // Close lightbox
+        if (closeLightbox) {
+          closeLightbox.addEventListener("click", function () {
+            if (lightbox) {
+              lightbox.classList.remove("active");
+            }
+            videoFrame.src = "";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+          });
+        }
+
+        // Close when clicking outside video
+        if (lightbox) {
+          lightbox.addEventListener("click", function (e) {
+            if (e.target === lightbox) {
+              lightbox.classList.remove("active");
+              videoFrame.src = "";
+              document.body.style.overflow = "auto";
+            }
+          });
+        }
+      });
     </script>
   </body>
 </html>
