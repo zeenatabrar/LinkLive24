@@ -18,7 +18,7 @@ const mobileNavLinks = [
 ];
 ---
 
-<div class="header">
+<!-- <div class="header">
   <div class="header-container">
     <div>
       <img
@@ -119,6 +119,131 @@ const mobileNavLinks = [
 
     .header img {
       height: 60px;
+    }
+  }
+</style> -->
+<div class="header">
+  <div class="header-container">
+    <div>
+      <img src="/logo.jpg" alt="News24 Logo" class="logo" />
+    </div>
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav class="nav">
+      {navLinks.map((link) => <a href={link.href}>{link.text}</a>)}
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    {mobileNavLinks.map((link) => <a href={link.href}>{link.text}</a>)}
+  </div>
+</div>
+
+<style>
+  .header {
+    background: #222;
+    padding: 0px 15px; /* Reduced padding for mobile */
+    border-bottom: 2px solid #e60000; /* Thinner border for mobile */
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .logo {
+    height: 60px; /* Smaller logo for mobile */
+    width: auto;
+    transition: height 0.3s ease; /* Smooth transition when resizing */
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .nav a {
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 20px; /* Smaller hamburger icon */
+    color: white;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #feffff;
+    width: 100%;
+    padding: 8px 0; /* Reduced padding */
+  }
+
+  .mobile-menu a {
+    color: rgb(3, 0, 0);
+    text-decoration: none;
+    padding: 0px 15px; /* Reduced padding */
+    font-weight: bold;
+    font-size: 14px; /* Smaller font for mobile menu */
+  }
+
+  @media (max-width: 1023px) {
+    .nav {
+      display: none;
+    }
+
+    .hamburger {
+      display: block;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .header {
+      padding: 0px 20px;
+    }
+
+    .logo {
+      height: 70px; /* Larger size for tablets */
+    }
+
+    .hamburger {
+      font-size: 22px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .header {
+      padding: 0px 20px;
+      border-bottom-width: 3px;
+    }
+
+    .logo {
+      height: 80px; /* Even larger for desktops */
+    }
+
+    .nav {
+      gap: 24px;
+      font-size: 16px;
+    }
+
+    .mobile-menu a {
+      font-size: 16px;
+      padding: 10px 20px;
     }
   }
 </style>
