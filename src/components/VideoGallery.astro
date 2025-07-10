@@ -33,9 +33,9 @@ const videos = [
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
-    max-width: 1600px; /* Limits width to 1600px */
-    margin: 0 auto; /* Centers the gallery */
-    width: 100%;
+    /* max-width: 1600px; 
+    margin: 0 auto; 
+    width: 100%; */
   }
 
   .video-thumbnail {
@@ -81,5 +81,13 @@ const videos = [
     padding: 15px;
     background: #f5f5f5;
     font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+    .video-gallery {
+      grid-template-columns: 1fr; /* Single column on mobile */
+      gap: 40px; /* Reduced gap for mobile */
+      padding: 15px; /* Reduced padding for mobile */
+    }
   }
 </style>
