@@ -1,0 +1,29 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main # or the branch you use
+
+jobs:
+  ftp-deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.linklive24.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/ # change this to dist/ if you're using Vite or another bundler
+          server-dir: /domains/linklive24.com/public_html/
